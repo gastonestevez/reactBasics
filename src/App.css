@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.paises{
+  margin-bottom: 10px;
+}
 
 .App-logo {
   height: 40vmin;
