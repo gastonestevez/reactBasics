@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import CountryList from "./components/CountryList";
 import CountryDetails from "./components/CountryDetails";
-import Spinner from "react-bootstrap/Spinner";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 function App() {
     const [country,setCountry] = useState(null);
+    const [countryDetails, setCountryDetails] = useState(null);
     const [loading,setLoading] = useState(true);
     useEffect( () =>
     {
@@ -24,11 +23,8 @@ function App() {
         fetchData();
     },[]);
 
-    function loadCountryData (pais) {
-        console.log(pais)
-    }
     return (
-    <Container>
+    <Container className={'container'}>
         <Row>
             <Col>
                 <h2>Países y sus detalles</h2>
@@ -36,18 +32,10 @@ function App() {
         </Row>
         <Row>
             <Col>
-                {loading ?
-                    <Spinner animation="border" variant="dark" /> :
-                    country.map( (c,index) =>
-                        <div key={index}>
-                            <Button className={'paises'} >
-                                {c.name}
-                            </Button>
-                        </div>)
-                }
+                <CountryList loading={loading} country={country} setCountryDetails={setCountryDetails}/>
             </Col>
             <Col>
-                <p> { }</p>
+                <CountryDetails countryDetails={countryDetails}/>
             </Col>
         </Row>
 
